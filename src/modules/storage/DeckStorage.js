@@ -2,11 +2,13 @@ export const getAllDecks = () => {
     return new Promise(function (resolve, reject) {
         resolve([{
             "id": "1",
-            "name": "Java"
+            "name": "Java",
+            "cards": ["1"]
         },
         {
             "id": "2",
-            "name": "Javascript"
+            "name": "Javascript",
+            "cards": []
         }]
         );
     })

@@ -25,15 +25,13 @@ export default class ListDecks extends React.Component {
                         <Container style={{ paddingTop: 20 }}>
                             {decks.map(deck => (
                                 <Card key={deck.id}>
-                                    <CardItem header button onPress={() => console.log(deck.name)}>
+                                    <CardItem header button onPress={() => this.props.navigation.navigate('ViewDeck', { deck: deck })}>
                                         <Text>{deck.name}</Text>
                                     </CardItem>
                                 </Card>
                             ))}
-
                         </Container>
                     </Content>
-
                 </Container>
             </Container>
         );
