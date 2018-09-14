@@ -1,23 +1,46 @@
+import { Container, Header, Content, Title, Card, CardItem, Text } from 'native-base';
+import { getStatusBarHeight } from 'react-native-status-bar-height';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import Expo from "expo";
 
 export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
-    );
-  }
-}
+    state = {
+        "loading": true
+    }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    async componentWillMount() {
+        await Expo.Font.loadAsync({
+            'Roboto': require('native-base/Fonts/Roboto.ttf'),
+            'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
+            'Ionicons': require('@expo/vector-icons/fonts/Ionicons.ttf'),
+        });
+        this.setState({ loading: false });
+    }
+
+    render() {
+        if (this.state.loading) {
+            return <Expo.AppLoading />;
+        }
+        return (
+            <Container>
+                <Header style={{ paddingTop: getStatusBarHeight() }}>
+                    <Title>Flashcards</Title>
+                </Header>
+
+                <Content>
+                    <Card>
+                        <CardItem header button onPress={() => console.log("abc")}>
+                            <Text>Test</Text>
+                        </CardItem>
+
+                        <CardItem>
+                            <Text>
+                                Testing
+                            </Text>
+                        </CardItem>
+                    </Card>
+                </Content>
+            </Container>
+        );
+    }
+}
