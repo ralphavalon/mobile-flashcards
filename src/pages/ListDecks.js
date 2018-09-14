@@ -1,17 +1,40 @@
-import { Container, Header, Content, Title, Body, Left, Right, Text, Button, Icon } from 'native-base';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
+import { Container, Content, Card, CardItem, Text, Button, Icon } from 'native-base';
 import React from 'react';
+import * as storage from '../modules/storage/DeckStorage'
 
 export default class ListDecks extends React.Component {
+    state = {
+        decks: []
+    }
+    componentDidMount() {
+        storage.getAllDecks().then((decks) => {
+            this.setState({ decks })
+        })
+    }
+
     render() {
+        const { decks } = this.state
         return (
-            <Container style={{ alignItems: 'center' }}>
-                <Content style={{ paddingTop: 20 }}>
-                    <Button iconLeft onPress={() => this.props.navigation.navigate('CreateDeck')}>
-                        <Icon name='ios-add-circle' />
-                        <Text>Create Deck</Text>
-                    </Button>
-                </Content>
+            <Container>
+                <Container>
+                    <Content padder>
+                        <Button iconLeft onPress={() => this.props.navigation.navigate('CreateDeck')}>
+                            <Icon name='ios-add-circle' />
+                            <Text>Create Deck</Text>
+                        </Button>
+                        <Container style={{ paddingTop: 20 }}>
+                            {decks.map(deck => (
+                                <Card key={deck.id}>
+                                    <CardItem header button onPress={() => console.log(deck.name)}>
+                                        <Text>{deck.name}</Text>
+                                    </CardItem>
+                                </Card>
+                            ))}
+
+                        </Container>
+                    </Content>
+
+                </Container>
             </Container>
         );
     }
