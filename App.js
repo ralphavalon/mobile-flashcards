@@ -1,7 +1,18 @@
-import { Container, Header, Content, Title, Card, CardItem, Text } from 'native-base';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
 import React from 'react';
-import Expo from "expo";
+import { StackNavigator } from 'react-navigation';
+import CreateDeck from './src/pages/CreateDeck'
+import ListDecks from './src/pages/ListDecks'
+
+const Stack = StackNavigator({
+    Home: {
+        screen: ListDecks
+    },
+    CreateDeck: {
+        screen: CreateDeck
+    }
+})
+
+
 
 export default class App extends React.Component {
     state = {
@@ -22,25 +33,7 @@ export default class App extends React.Component {
             return <Expo.AppLoading />;
         }
         return (
-            <Container>
-                <Header style={{ paddingTop: getStatusBarHeight() }}>
-                    <Title>Flashcards</Title>
-                </Header>
-
-                <Content>
-                    <Card>
-                        <CardItem header button onPress={() => console.log("abc")}>
-                            <Text>Test</Text>
-                        </CardItem>
-
-                        <CardItem>
-                            <Text>
-                                Testing
-                            </Text>
-                        </CardItem>
-                    </Card>
-                </Content>
-            </Container>
+            <Stack />
         );
     }
 }
