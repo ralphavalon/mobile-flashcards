@@ -3,18 +3,6 @@ import { getStatusBarHeight } from 'react-native-status-bar-height';
 import React from 'react';
 
 export default class ListDecks extends React.Component {
-    static navigationOptions = ({ navigation }) => ({
-        header: (
-            <Header style={{ marginTop: getStatusBarHeight() }}>
-                <Left />
-                <Body>
-                    <Title>Flashcards</Title>
-                </Body>
-                <Right />
-            </Header>
-        )
-    });
-
     render() {
         return (
             <Container style={{ alignItems: 'center' }}>
