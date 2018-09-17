@@ -6,12 +6,15 @@ import { Header, Title, Body, Left, Right } from 'native-base';
 import CreateDeck from './src/pages/CreateDeck'
 import ListDecks from './src/pages/ListDecks'
 import ViewDeck from './src/pages/ViewDeck'
+import AddQuestion from './src/pages/AddQuestion'
 
-const Stack = createStackNavigator({
-    Home: ListDecks,
-    CreateDeck: CreateDeck,
-    ViewDeck: ViewDeck
-},
+const Stack = createStackNavigator(
+    {
+        Home: ListDecks,
+        CreateDeck: CreateDeck,
+        ViewDeck: ViewDeck,
+        AddQuestion: AddQuestion
+    },
     {
         initialRouteName: 'Home',
         navigationOptions: {
