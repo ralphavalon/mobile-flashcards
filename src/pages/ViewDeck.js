@@ -29,22 +29,22 @@ export default class ViewDeck extends React.Component {
                         <Container style={{ paddingTop: 20 }}>
                             <Card>
                                 <CardItem header>
-                                    <Text>{deck.name}</Text>
+                                    <Text>{deck.title}</Text>
                                 </CardItem>
                                 <CardItem>
                                     <Body>
                                         <Text>
-                                            Cards: {deck.cards.length}
+                                            Cards: {deck.questions.length}
                                         </Text>
                                     </Body>
                                 </CardItem>
                             </Card>
                             <Container style={{ flexDirection: 'row', paddingTop: 20, justifyContent: 'space-between' }}>
-                                <Button success iconLeft onPress={() => this.props.navigation.navigate('CreateDeck')}>
+                                <Button success iconLeft onPress={() => this.props.navigation.navigate('Quiz', { 'deck': deck })}>
                                     <Icon name='md-clipboard' />
                                     <Text>Start Quiz</Text>
                                 </Button>
-                                <Button iconLeft onPress={() => this.props.navigation.navigate('CreateDeck')}>
+                                <Button iconLeft onPress={() => this.props.navigation.navigate('AddQuestion', { 'deck': deck })}>
                                     <Icon name='ios-add-circle' />
                                     <Text>Add Question</Text>
                                 </Button>

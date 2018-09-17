@@ -1,14 +1,17 @@
 export const getAllDecks = () => {
     return new Promise(function (resolve, reject) {
         resolve([{
-            "id": "1",
-            "name": "Java",
-            "cards": ["1"]
+            "id": 1,
+            "title": "Java",
+            "questions": [{
+                "question": "Oh nana, what's my name?",
+                "answer": "Rihanna"
+            }]
         },
         {
-            "id": "2",
-            "name": "Javascript",
-            "cards": []
+            "id": 2,
+            "title": "Javascript",
+            "questions": []
         }]
         );
     })

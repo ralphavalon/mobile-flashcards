@@ -26,7 +26,7 @@ export default class ListDecks extends React.Component {
                             {decks.map(deck => (
                                 <Card key={deck.id}>
                                     <CardItem header button onPress={() => this.props.navigation.navigate('ViewDeck', { deck: deck })}>
-                                        <Text>{deck.name}</Text>
+                                        <Text>{deck.title}</Text>
                                     </CardItem>
                                 </Card>
                             ))}
