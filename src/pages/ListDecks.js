@@ -1,4 +1,4 @@
-import { Container, Content, Card, CardItem, Text, Button, Icon } from 'native-base';
+import { Container, Content, Text, Button, Icon } from 'native-base';
 import React from 'react';
 import TextCard from '../components/TextCard';
 import * as storage from '../modules/storage/DeckStorage'

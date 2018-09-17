@@ -1,5 +1,6 @@
-import { Container, Content, Form, Text, Item, Label, Input, Button, Icon } from 'native-base';
+import { Container, Content, Text, Button } from 'native-base';
 import React from 'react';
+import TextCard from '../components/TextCard';
 
 export default class Quiz extends React.Component {
     render() {
