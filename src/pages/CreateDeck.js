@@ -1,5 +1,6 @@
-import { Container, Content, Form, Text, Item, Label, Input, Button, Icon } from 'native-base';
+import { Container, Content, Form, Text, Button, Icon } from 'native-base';
 import React from 'react';
+import FormField from '../components/FormField';
 import HeaderNavigationAware from '../components/HeaderNavigationAware';
 
 export default class CreateDeck extends React.Component {
@@ -14,10 +15,7 @@ export default class CreateDeck extends React.Component {
             <Container style={{ alignItems: 'center' }}>
                 <Content style={{ paddingTop: 20 }}>
                     <Form>
-                        <Item stackedLabel>
-                            <Label>Name</Label>
-                            <Input name="name" />
-                        </Item>
+                        <FormField label="Name" inputName="name" />
                     </Form>
                 </Content>
 

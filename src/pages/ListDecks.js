@@ -1,5 +1,6 @@
 import { Container, Content, Card, CardItem, Text, Button, Icon } from 'native-base';
 import React from 'react';
+import TextCard from '../components/TextCard';
 import * as storage from '../modules/storage/DeckStorage'
 
 export default class ListDecks extends React.Component {
@@ -24,11 +25,7 @@ export default class ListDecks extends React.Component {
                         </Button>
                         <Container style={{ paddingTop: 20 }}>
                             {decks.map(deck => (
-                                <Card key={deck.id}>
-                                    <CardItem header button onPress={() => this.props.navigation.navigate('ViewDeck', { deck: deck })}>
-                                        <Text>{deck.title}</Text>
-                                    </CardItem>
-                                </Card>
+                                <TextCard key={deck.id} text={deck.title} onClick={() => this.props.navigation.navigate('ViewDeck', { deck: deck })} />
                             ))}
                         </Container>
                     </Content>

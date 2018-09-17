@@ -1,5 +1,4 @@
-import { Container, Header, Content, Title, Left, Right, Body, Form, Text, Item, Label, Input, Button, Icon } from 'native-base';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
+import { Container, Content, Form, Text, Button, Icon } from 'native-base';
 import React from 'react';
 import FormField from '../components/FormField';
 import HeaderNavigationAware from '../components/HeaderNavigationAware';
