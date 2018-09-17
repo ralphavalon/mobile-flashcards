@@ -1,21 +1,11 @@
-import { Container, Header, Content, Title, Left, Right, Body, Form, Text, Item, Label, Input, Button, Icon } from 'native-base';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
+import { Container, Content, Form, Text, Item, Label, Input, Button, Icon } from 'native-base';
 import React from 'react';
+import HeaderNavigationAware from '../components/HeaderNavigationAware';
 
 export default class CreateDeck extends React.Component {
     static navigationOptions = ({ navigation, navigationOptions }) => ({
         header: (
-            <Header style={{ marginTop: getStatusBarHeight() }}>
-                <Left>
-                    <Button transparent onPress={() => navigation.goBack()}>
-                        <Icon name="arrow-back" />
-                    </Button>
-                </Left>
-                <Body>
-                    <Title>Create Deck</Title>
-                </Body>
-                <Right />
-            </Header>
+            <HeaderNavigationAware title="Create Deck" navigation={navigation} />
         )
     });
 
@@ -26,13 +16,24 @@ export default class CreateDeck extends React.Component {
                     <Form>
                         <Item stackedLabel>
                             <Label>Name</Label>
-                            <Input />
+                            <Input name="name" />
                         </Item>
                     </Form>
                 </Content>
 
                 <Container>
-                    <Button iconLeft onPress={() => this.props.navigation.navigate('CreateDeck')}>
+                    <Button iconLeft onPress={(e) => {
+                        e.preventDefault();
+                        if (!!name && !!name.trim()) {
+                            const deck = serializeForm(e.target, { hash: true });
+                            onSubmit(deck);
+                            e.target.reset();
+                            this.props.navigation.navigate('CreateDeck');
+                        } else {
+                            alert('Name must not be empty');
+                        }
+
+                    }}>
                         <Icon name='ios-add-circle' />
                         <Text>Create Deck</Text>
                     </Button>
