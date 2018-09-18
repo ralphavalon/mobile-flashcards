@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator, createMaterialTopTabNavigator } from 'react-navigation';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { Header, Title, Body, Left, Right } from 'native-base';
 
@@ -8,10 +8,34 @@ import ListDecks from './src/pages/ListDecks'
 import ViewDeck from './src/pages/ViewDeck'
 import AddQuestion from './src/pages/AddQuestion'
 
+const Tabs = createMaterialTopTabNavigator({
+    Decks: {
+        screen: ListDecks,
+        navigationOptions: {
+            tabBarLabel: 'Decks'
+        }
+    },
+    AddDeck: {
+        screen: CreateDeck,
+        navigationOptions: {
+            tabBarLabel: 'Create Deck'
+        }
+    },
+}, {
+        tabBarOptions: {
+            style: {
+                height: 56,
+                shadowRadius: 4,
+                shadowOpacity: 1
+            }
+        }
+    });
+
 const Stack = createStackNavigator(
     {
-        Home: ListDecks,
-        CreateDeck: CreateDeck,
+        Home: {
+            screen: Tabs
+        },
         ViewDeck: ViewDeck,
         AddQuestion: AddQuestion
     },
