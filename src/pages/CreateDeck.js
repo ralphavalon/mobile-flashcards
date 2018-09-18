@@ -1,6 +1,7 @@
 import { Container, Content, Form, Text, Item, Label, Input, Button, Icon } from 'native-base';
 import React from 'react';
 import * as storage from '../modules/storage/DeckStorage'
+import FormField from '../components/FormField'
 import HeaderNavigationAware from '../components/HeaderNavigationAware';
 import { NavigationActions } from 'react-navigation'
 
@@ -15,13 +16,8 @@ export default class CreateDeck extends React.Component {
         name: ''
     }
 
-    reset = () => {
-        this.setState({ "name": '' })
-        this.toHome()
-    }
-
-    toHome() {
-        this.props.navigation.dispatch(NavigationActions.back({ key: 'ListDecks' }))
+    toDeck(deck) {
+        this.props.navigation.navigate('ViewDeck', { deck: deck })
     }
 
     render() {
@@ -31,10 +27,7 @@ export default class CreateDeck extends React.Component {
             <Container style={{ alignItems: 'center' }}>
                 <Content style={{ paddingTop: 20 }}>
                     <Form>
-                        <Item stackedLabel>
-                            <Label>Name</Label>
-                            <Input name="name" onChangeText={(e) => this.setState({ "name": e })} value={name} />
-                        </Item>
+                        <FormField label="Name" inputName="name" value={name} onChange={(e) => this.setState({ "name": e })} />
                     </Form>
                 </Content>
 
@@ -42,7 +35,7 @@ export default class CreateDeck extends React.Component {
                     <Button iconLeft onPress={(e) => {
                         if (!!name && !!name.trim()) {
                             storage.createDeck(name)
-                                .then((e) => this.reset())
+                                .then((decks) => this.toDeck(decks[decks.length - 1]))
                                 .catch(() => alert('Cannot create deck'))
                         } else {
                             alert('Name must not be empty');
