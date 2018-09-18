@@ -7,6 +7,7 @@ import CreateDeck from './src/pages/CreateDeck'
 import ListDecks from './src/pages/ListDecks'
 import ViewDeck from './src/pages/ViewDeck'
 import AddQuestion from './src/pages/AddQuestion'
+import Quiz from './src/pages/Quiz'
 
 const Tabs = createMaterialTopTabNavigator({
     Decks: {
@@ -37,7 +38,8 @@ const Stack = createStackNavigator(
             screen: Tabs
         },
         ViewDeck: ViewDeck,
-        AddQuestion: AddQuestion
+        AddQuestion: AddQuestion,
+        Quiz: Quiz
     },
     {
         initialRouteName: 'Home',
