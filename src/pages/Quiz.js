@@ -1,7 +1,6 @@
 import { Container, Content, Text, Button, View } from 'native-base';
 import React from 'react';
 import TextCard from '../components/TextCard';
-import Result from './Result'
 
 export default class Quiz extends React.Component {
     state = {
