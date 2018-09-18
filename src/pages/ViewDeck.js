@@ -1,6 +1,7 @@
 import { Container, Content, Card, CardItem, Text, Body, Button, Icon } from 'native-base';
 import React from 'react';
 import HeaderNavigationAware from '../components/HeaderNavigationAware';
+import { Alert } from 'react-native'
 
 export default class ViewDeck extends React.Component {
     static navigationOptions = ({ navigation, navigationOptions }) => {
@@ -30,7 +31,13 @@ export default class ViewDeck extends React.Component {
                                 </CardItem>
                             </Card>
                             <Container style={{ flexDirection: 'row', paddingTop: 20, justifyContent: 'space-between' }}>
-                                <Button success iconLeft onPress={() => this.props.navigation.navigate('Quiz', { 'deck': deck })}>
+                                <Button success iconLeft onPress={() => {
+                                    if (deck.questions.length == 0) {
+                                        Alert.alert('No questions found', 'Cannot start without questions');
+                                    } else {
+                                        this.props.navigation.navigate('Quiz', { 'deck': deck })
+                                    }
+                                }}>
                                     <Icon name='md-clipboard' />
                                     <Text>Start Quiz</Text>
                                 </Button>

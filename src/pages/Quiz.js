@@ -1,6 +1,7 @@
 import { Container, Content, Text, Button, View } from 'native-base';
 import React from 'react';
 import TextCard from '../components/TextCard';
+import * as notification from '../modules/storage/Message'
 
 export default class Quiz extends React.Component {
     state = {
@@ -19,6 +20,8 @@ export default class Quiz extends React.Component {
         } else {
             const successPercentage = Math.round((correct / totalQuestions) * 100)
             const text = `You answered right ${successPercentage}% of the questions: ${correct}/${totalQuestions}`
+
+            notification.clearLocalNotification().then(notification.setLocalNotification)
 
             return (
                 <Container>

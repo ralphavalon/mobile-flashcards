@@ -8,6 +8,7 @@ import ListDecks from './src/pages/ListDecks'
 import ViewDeck from './src/pages/ViewDeck'
 import AddQuestion from './src/pages/AddQuestion'
 import Quiz from './src/pages/Quiz'
+import * as notification from './src/modules/storage/Message'
 
 const Tabs = createMaterialTopTabNavigator({
     Decks: {
@@ -60,6 +61,9 @@ const Stack = createStackNavigator(
 export default class App extends React.Component {
     state = {
         "loading": true
+    }
+    componentDidMount() {
+        notification.setLocalNotification()
     }
 
     async componentWillMount() {
