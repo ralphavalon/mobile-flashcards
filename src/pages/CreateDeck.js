@@ -1,9 +1,9 @@
-import { Container, Content, Form, Text, Item, Label, Input, Button, Icon } from 'native-base';
+import { Container, Content, Form, Text, Button, Icon } from 'native-base';
 import React from 'react';
 import * as storage from '../modules/storage/DeckStorage'
 import FormField from '../components/FormField'
 import HeaderNavigationAware from '../components/HeaderNavigationAware';
-import { NavigationActions } from 'react-navigation'
+import { Alert } from 'react-native'
 
 export default class CreateDeck extends React.Component {
     static navigationOptions = ({ navigation, navigationOptions }) => ({
@@ -36,9 +36,9 @@ export default class CreateDeck extends React.Component {
                         if (!!name && !!name.trim()) {
                             storage.createDeck(name)
                                 .then((decks) => this.toDeck(decks[decks.length - 1]))
-                                .catch(() => alert('Cannot create deck'))
+                                .catch(() => Alert.alert('Internal error', 'Cannot create deck'))
                         } else {
-                            alert('Name must not be empty');
+                            Alert.alert('Validation error', 'Name must not be empty');
                         }
 
                     }}>
