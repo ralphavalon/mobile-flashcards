@@ -1,21 +1,11 @@
-import { Container, Header, Content, Title, Left, Right, Card, CardItem, Text, Body, Button, Icon } from 'native-base';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
+import { Container, Content, Card, CardItem, Text, Body, Button, Icon } from 'native-base';
 import React from 'react';
+import HeaderNavigationAware from '../components/HeaderNavigationAware';
 
 export default class ViewDeck extends React.Component {
     static navigationOptions = ({ navigation, navigationOptions }) => {
         return (
-            <Header style={{ marginTop: getStatusBarHeight() }}>
-                <Left>
-                    <Button transparent onPress={() => navigation.goBack()}>
-                        <Icon name="arrow-back" />
-                    </Button>
-                </Left>
-                <Body>
-                    <Title>Flashcards</Title>
-                </Body>
-                <Right />
-            </Header>
+            <HeaderNavigationAware title="View Deck" navigation={navigation} />
         )
     }
 

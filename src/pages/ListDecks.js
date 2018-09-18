@@ -14,8 +14,7 @@ export default class ListDecks extends React.Component {
     }
 
     render() {
-        const { navigation } = this.props
-        const decks = !!this.props.decks ? this.props.decks : this.state.decks
+        const { decks } = this.state
 
         return (
             <Container>
