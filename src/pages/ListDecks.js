@@ -9,12 +9,14 @@ export default class ListDecks extends React.Component {
     }
     componentDidMount() {
         storage.getAllDecks().then((decks) => {
-            this.setState({ decks })
+            if (decks) {
+                this.setState({ decks })
+            }
         })
     }
 
     render() {
-        const { decks } = this.state
+        const decks = this.state.decks
 
         return (
             <Container>

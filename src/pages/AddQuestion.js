@@ -3,6 +3,7 @@ import React from 'react';
 import * as storage from '../modules/storage/DeckStorage'
 import FormField from '../components/FormField';
 import HeaderNavigationAware from '../components/HeaderNavigationAware';
+import { Alert } from 'react-native'
 
 export default class AddQuestion extends React.Component {
     static navigationOptions = ({ navigation, navigationOptions }) => ({
@@ -36,12 +37,16 @@ export default class AddQuestion extends React.Component {
                 <Container>
                     <Button iconLeft onPress={(e) => {
                         if (!!question && !!question.trim() && !!answer && !!answer.trim()) {
-                            storage.addQuestionToDeck({
+                            const flashcard = {
                                 "question": question,
                                 "answer": answer
-                            }, deck)
-                                .then(() => this.toDeck(deck))
-                                .catch(() => Alert.alert('Internal error', 'Cannot create deck'))
+                            }
+                            storage.addQuestionToDeck(flashcard, deck)
+                                .then(() => {
+                                    deck.questions.push(flashcard)
+                                    this.toDeck(deck)
+                                })
+                                .catch((e) => Alert.alert('Internal error', 'Cannot add question'))
                         } else {
                             Alert.alert('Validation error', 'Name must not be empty');
                         }

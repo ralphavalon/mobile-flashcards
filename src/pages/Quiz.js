@@ -28,10 +28,10 @@ export default class Quiz extends React.Component {
                     </Content>
 
                     <Container style={{ flexDirection: 'row', paddingTop: 20, justifyContent: 'center' }}>
-                        <Button success style={{ marginRight: 20 }} onPress={() => this.props.navigation.navigate('Quiz', { deck: deck })}>
+                        <Button success style={{ marginRight: 20 }} onPress={() => this.props.navigation.navigate('ViewDeck', { deck: deck })}>
                             <Text>Try again</Text>
                         </Button>
-                        <Button error onPress={() => this.props.navigation.navigate('Home')}>
+                        <Button onPress={() => this.props.navigation.navigate('Home')}>
                             <Text>Back to Decks</Text>
                         </Button>
                     </Container>
@@ -44,7 +44,7 @@ export default class Quiz extends React.Component {
                 <Container style={{ alignItems: 'center' }}>
                     <Text>{currentQuestionIndex + 1}/{totalQuestions}</Text>
                     <Content style={{ paddingTop: 20 }}>
-                        <TextCard key={deck.id} header={flashcard.question} text={showAnswer ? flashcard.answer : 'Click here to see the answer'} onClick={() => this.setState({ showAnswer: true })} />
+                        <TextCard key={deck.id} header={flashcard.question} text={showAnswer ? flashcard.answer : 'Tap here to see the answer'} onClick={() => this.setState({ showAnswer: true })} />
                     </Content>
                 </Container>
 

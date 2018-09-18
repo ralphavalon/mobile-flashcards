@@ -34,8 +34,13 @@ export default class CreateDeck extends React.Component {
                 <Container>
                     <Button iconLeft onPress={(e) => {
                         if (!!name && !!name.trim()) {
-                            storage.createDeck(name)
-                                .then((decks) => this.toDeck(decks[decks.length - 1]))
+                            const deck = {
+                                id: new Date().getTime(),
+                                title: name,
+                                questions: []
+                            }
+                            storage.createDeck(deck)
+                                .then((decks) => this.toDeck(deck))
                                 .catch(() => Alert.alert('Internal error', 'Cannot create deck'))
                         } else {
                             Alert.alert('Validation error', 'Name must not be empty');
